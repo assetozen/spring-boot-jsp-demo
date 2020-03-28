@@ -1,11 +1,10 @@
 package com.assegd.app.ws.service.impl;
 
 import com.assegd.app.ws.io.entity.UserEntity;
-import com.assegd.app.ws.repository.UserRepository;
+import com.assegd.app.ws.io.repositories.UserRepository;
 import com.assegd.app.ws.service.UserService;
 import com.assegd.app.ws.shared.Utils;
 import com.assegd.app.ws.shared.dto.UserDto;
-import org.apache.naming.factory.SendMailFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -40,10 +39,21 @@ public class UserServiceImpl implements UserService {
 
         UserEntity storedUserDetails = userRepository.save(userEntity);
 
-        UserDto returnvalue = new UserDto();
-        BeanUtils.copyProperties(storedUserDetails, returnvalue);
+        UserDto returnValue = new UserDto();
+        BeanUtils.copyProperties(storedUserDetails, returnValue);
 
-        return returnvalue;
+        return returnValue;
+    }
+
+    @Override
+    public UserDto getUser(String email){
+        UserEntity userEntity = userRepository.findByEmail(email);
+
+        if (userEntity == null) throw  new UsernameNotFoundException(email);
+
+        UserDto returnValue = new UserDto();
+        BeanUtils.copyProperties(userEntity, returnValue);
+        return returnValue;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.assegd.app.ws.repository;
+package com.assegd.app.ws.io.repositories;
 
 import com.assegd.app.ws.io.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;
