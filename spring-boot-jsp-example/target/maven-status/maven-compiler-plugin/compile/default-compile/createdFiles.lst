@@ -1,0 +1,6 @@
+com\devglan\config\BeanConfig.class
+com\devglan\config\WebConfig.class
+com\devglan\config\Application.class
+com\devglan\controller\DashboardController.class
+com\devglan\model\User.class
+com\devglan\config\ApplicationInitializer.class
